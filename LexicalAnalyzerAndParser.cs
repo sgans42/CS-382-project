@@ -12,7 +12,7 @@ namespace LexicalAnalyzerAndParser
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Hello World! meow meow");
         }
     }
 
