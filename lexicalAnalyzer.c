@@ -1,3 +1,7 @@
+/* 
+CS 382 Team Project: Lexical Analyzer and Parser
+By: Stephen Gansman and Jeremiah Harris
+*/
 #include <stdio.h>
 #include <ctype.h>
 
@@ -188,32 +192,32 @@ void expr(FILE *outFile) {
   term(outFile);
 
   while (nextToken == ADD_OP || nextToken == SUB_OP) {
+    char op = (nextToken == ADD_OP) ? '+' : '-';
     lex();
+    fprintf(outFile, " [%c]\n", op);
     term(outFile);
   }
 
   fprintf(outFile, "]\n");
 }
 
-void error() {
-	printf("Error in syntax\n");
-}
-
 void term(FILE *outFile) {
-  fprintf(outFile, "[term\n");
+  fprintf(outFile, " [term\n");
   factor(outFile);
   while (nextToken == DIV_OP || nextToken == MULT_OP) {
+    char op = (nextToken == DIV_OP) ? '/' : '*';
     lex();
+    fprintf(outFile, "  [%c]\n", op);
     factor(outFile);
   }
-  fprintf(outFile, "]\n");
+  fprintf(outFile, " ]\n");
 }
 
 void factor(FILE *outFile) {
-  fprintf(outFile, "[factor\n");
+  fprintf(outFile, "  [factor\n   ");
 
   if (nextToken == IDENT || nextToken == INT_LIT) {
-    fprintf(outFile, "[id [%s]]\n", lexeme);
+    fprintf(outFile, "  [id [%s]]\n", lexeme);
     lex();
   } else {
     if (nextToken == LEFT_PAR) {
@@ -225,5 +229,5 @@ void factor(FILE *outFile) {
     }
   }
 
-  fprintf(outFile, "]\n");
+  fprintf(outFile, "   ]\n");
 }

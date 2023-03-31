@@ -1,12 +1,13 @@
 [expr
-[term
-[factor
-[id [A]]
-]
-]
-[term
-[factor
-[id [B]]
-]
-]
+ [term
+  [factor
+     [id [B]]
+   ]
+ ]
+ [+]
+ [term
+  [factor
+     [id [C]]
+   ]
+ ]
 ]
